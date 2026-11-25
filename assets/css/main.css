@@ -1,0 +1,1497 @@
+/* =========================================================
+   KABANKALAN CATHOLIC COLLEGE, INC.
+   KCC HERITAGE / CONTEMPORARY DESIGN SYSTEM
+   Identity: Faith • Knowledge • Community • Service
+
+   Visual direction:
+   - Ink navy: institutional strength
+   - Heritage red: KCC character and warmth
+   - Parchment: welcoming, readable surfaces
+   - Sage: learning, growth and community
+   - Antique brass: restrained heritage detail
+
+   This stylesheet consolidates the repeated rules from the
+   supplied CSS while preserving the existing template classes.
+   ========================================================= */
+
+/* 01. DESIGN TOKENS
+---------------------------------------------------------- */
+:root {
+  --kcc-ink: #172D3D;
+  --kcc-ink-deep: #10212E;
+  --kcc-blue: #28485B;
+  --kcc-blue-soft: #E8EEF0;
+
+  --kcc-red: #9B4B3F;
+  --kcc-red-dark: #78372F;
+  --kcc-red-soft: #F3E8E4;
+
+  --kcc-brass: #B18A4A;
+  --kcc-brass-light: #D8C49B;
+
+  --kcc-parchment: #F4F0E7;
+  --kcc-paper: #FBFAF6;
+  --kcc-white: #FFFFFF;
+  --kcc-sage: #718477;
+  --kcc-sage-soft: #E9EEE9;
+
+  --kcc-text: #4E5C63;
+  --kcc-muted: #718087;
+  --kcc-border: #DED9CE;
+
+  /* Template compatibility variables */
+  --background-color: var(--kcc-paper);
+  --default-color: var(--kcc-text);
+  --heading-color: var(--kcc-ink);
+  --accent-color: var(--kcc-red);
+  --surface-color: var(--kcc-white);
+  --contrast-color: var(--kcc-white);
+  --nav-color: var(--kcc-ink);
+  --nav-hover-color: var(--kcc-red);
+  --nav-mobile-background-color: var(--kcc-paper);
+  --nav-dropdown-background-color: var(--kcc-white);
+  --nav-dropdown-color: var(--kcc-ink);
+  --nav-dropdown-hover-color: var(--kcc-red);
+
+  scroll-behavior: smooth;
+}
+
+/* 02. RESET AND GLOBAL TYPE
+---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--kcc-paper);
+  color: var(--kcc-text);
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--kcc-red);
+  text-decoration: none;
+  transition: color .25s ease, background .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+a:hover {
+  color: var(--kcc-red-dark);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--kcc-ink);
+  font-family: "Raleway", sans-serif;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+p {
+  margin-top: 0;
+}
+
+.section {
+  position: relative;
+  padding: 92px 0;
+  overflow: hidden;
+}
+
+.light-background {
+  background: var(--kcc-parchment);
+}
+
+/* Small heritage marker used by section headings */
+.section-title {
+  position: relative;
+  text-align: center;
+  padding-bottom: 42px;
+}
+
+.section-title h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 13px;
+  color: var(--kcc-red);
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+}
+
+.section-title h2::before,
+.section-title h2::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--kcc-brass);
+}
+
+.section-title p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--kcc-ink);
+  font-family: "Raleway", sans-serif;
+  font-size: clamp(27px, 3.2vw, 39px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -.7px;
+}
+
+/* 03. HEADER AND BRAND
+---------------------------------------------------------- */
+.header,
+#header {
+  position: relative;
+  background: rgba(251, 250, 246, .97);
+  border-bottom: 1px solid rgba(177, 138, 74, .48);
+  box-shadow: 0 5px 24px rgba(23, 45, 61, .08);
+  padding: 11px 0;
+  z-index: 997;
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+.header .container {
+  min-height: 64px;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header .logo img {
+  width: auto;
+  max-height: 54px;
+  object-fit: contain;
+}
+
+.header .logo h1,
+.header .logo .sitename {
+  margin: 0;
+  color: var(--kcc-ink);
+  font-family: "Raleway", sans-serif;
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: .6px;
+}
+
+/* 04. MAIN NAVIGATION
+---------------------------------------------------------- */
+.navmenu ul {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navmenu li {
+  position: relative;
+}
+
+.navmenu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 11px;
+  color: var(--kcc-ink);
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .35px;
+  white-space: nowrap;
+}
+
+.navmenu a:hover,
+.navmenu a.active,
+.navmenu li:hover > a {
+  color: var(--kcc-red);
+}
+
+.navmenu a.active {
+  position: relative;
+}
+
+.navmenu a.active::after {
+  content: "";
+  position: absolute;
+  right: 11px;
+  bottom: 4px;
+  left: 11px;
+  height: 2px;
+  background: var(--kcc-red);
+}
+
+/* Dropdown menu */
+.navmenu .dropdown ul {
+  display: block;
+  position: absolute;
+  top: 135%;
+  left: 0;
+  min-width: 225px;
+  padding: 10px 0;
+  background: var(--kcc-white);
+  border: 1px solid var(--kcc-border);
+  border-top: 3px solid var(--kcc-red);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 16px 36px rgba(16, 33, 46, .14);
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s ease;
+  z-index: 999;
+}
+
+.navmenu .dropdown:hover > ul {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.navmenu .dropdown ul a {
+  padding: 10px 19px;
+  color: var(--kcc-ink);
+  font-size: 12px;
+}
+
+.navmenu .dropdown ul a:hover {
+  background: var(--kcc-parchment);
+  color: var(--kcc-red);
+}
+
+.navmenu .dropdown ul .dropdown ul {
+  top: 0;
+  left: 100%;
+}
+
+/* Header call-to-action */
+.btn-getstarted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  background: var(--kcc-red);
+  border: 1px solid var(--kcc-red);
+  border-radius: 3px;
+  color: var(--kcc-white);
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  transition: .25s ease;
+}
+
+.btn-getstarted:hover {
+  background: var(--kcc-ink);
+  border-color: var(--kcc-ink);
+  color: var(--kcc-white);
+  transform: translateY(-2px);
+}
+
+.mobile-nav-toggle {
+  color: var(--kcc-ink);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* 05. HERO / HOMEPAGE INTRODUCTION
+---------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 680px;
+  overflow: hidden;
+  background: var(--kcc-ink-deep);
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: kccHeroDrift 22s ease-in-out infinite alternate;
+}
+
+@keyframes kccHeroDrift {
+  from { transform: scale(1); }
+  to { transform: scale(1.055); }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(16, 33, 46, .94) 0%, rgba(23, 45, 61, .82) 48%, rgba(23, 45, 61, .28) 100%),
+    linear-gradient(0deg, rgba(16, 33, 46, .35), transparent 55%);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.hero h2 {
+  max-width: 850px;
+  margin-bottom: 22px;
+  color: var(--kcc-white);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -1.1px;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, .2);
+}
+
+.hero p {
+  max-width: 690px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, .92);
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.hero p:last-of-type {
+  color: var(--kcc-brass-light);
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: .8px;
+}
+
+.hero .btn-get-started {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 14px 27px;
+  background: var(--kcc-brass);
+  border: 1px solid var(--kcc-brass);
+  border-radius: 3px;
+  color: var(--kcc-ink-deep);
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero .btn-get-started:hover {
+  background: var(--kcc-white);
+  border-color: var(--kcc-white);
+  color: var(--kcc-ink);
+  transform: translateY(-3px);
+}
+
+/* 06. ABOUT
+---------------------------------------------------------- */
+#about,
+.about {
+  padding: 100px 0;
+  background: var(--kcc-parchment);
+}
+
+.about .row {
+  align-items: center;
+}
+
+.about img {
+  width: 100%;
+  max-height: 440px;
+  padding: 12px;
+  background: var(--kcc-paper);
+  border: 1px solid var(--kcc-border);
+  object-fit: contain;
+}
+
+.about h2,
+.about h3,
+.about h4 {
+  color: var(--kcc-ink);
+}
+
+.about h3 {
+  margin-bottom: 20px;
+  font-size: clamp(27px, 3vw, 35px);
+  font-weight: 850;
+  line-height: 1.3;
+}
+
+.about .fst-italic {
+  color: var(--kcc-red);
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.about p,
+.about li {
+  color: var(--kcc-text);
+  line-height: 1.9;
+}
+
+.about ul {
+  margin: 23px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 8px 0;
+}
+
+.about ul i {
+  flex-shrink: 0;
+  color: var(--kcc-sage);
+  font-size: 20px;
+}
+
+.about .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--kcc-brass);
+  color: var(--kcc-red);
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.about .read-more:hover {
+  gap: 14px;
+  color: var(--kcc-red-dark);
+}
+
+/* 07. HISTORY
+---------------------------------------------------------- */
+#history,
+#history.history-section {
+  position: relative;
+  padding: 92px 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 90% 15%, rgba(177, 138, 74, .15), transparent 27%),
+    linear-gradient(125deg, var(--kcc-ink-deep), var(--kcc-ink) 68%, #315064);
+  color: var(--kcc-white);
+}
+
+#history::before {
+  content: "";
+  position: absolute;
+  top: 26px;
+  right: 5%;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(216, 196, 155, .22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#history .section-label {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--kcc-brass-light);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#history h1,
+#history h2,
+#history h3,
+#history h4 {
+  color: var(--kcc-white);
+}
+
+#history h2 {
+  margin-bottom: 22px;
+  font-size: clamp(29px, 3vw, 38px);
+  font-weight: 800;
+}
+
+#history p {
+  margin-bottom: 17px;
+  color: #E5EBEE;
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+#history .read-more,
+#history .read-more span,
+#history .read-more i {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kcc-brass-light);
+  font-weight: 750;
+}
+
+#history .read-more:hover,
+#history .read-more:hover span,
+#history .read-more:hover i {
+  color: var(--kcc-white);
+}
+
+#history .history-image {
+  width: 100%;
+  height: 420px;
+  border: 4px solid rgba(216, 196, 155, .65);
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .28);
+}
+
+/* 08. COUNTS / SCHOOL STATISTICS
+---------------------------------------------------------- */
+.counts {
+  padding: 66px 0;
+  background:
+    linear-gradient(110deg, #E9E2D4, #F5F1E8);
+  border-top: 1px solid #D8CDBA;
+  border-bottom: 1px solid #D8CDBA;
+}
+
+.stats-item {
+  padding: 15px;
+  text-align: center;
+}
+
+.stats-item span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--kcc-ink);
+  font-family: "Raleway", sans-serif;
+  font-size: 43px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.stats-item p {
+  margin: 0;
+  color: var(--kcc-red);
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+/* 09. WHY CHOOSE KCC
+---------------------------------------------------------- */
+.why-us {
+  padding: 100px 0;
+  background: var(--kcc-blue-soft);
+}
+
+.why-box {
+  position: relative;
+  height: 100%;
+  padding: 40px 32px;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--kcc-ink), var(--kcc-ink-deep));
+  border-bottom: 4px solid var(--kcc-brass);
+  border-radius: 4px;
+  color: var(--kcc-white);
+}
+
+.why-box::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  bottom: -75px;
+  width: 185px;
+  height: 185px;
+  border: 1px solid rgba(216, 196, 155, .35);
+  border-radius: 50%;
+}
+
+.why-box h3 {
+  margin-bottom: 18px;
+  color: var(--kcc-white);
+  font-size: 29px;
+}
+
+.why-box p {
+  color: rgba(255, 255, 255, .84);
+  line-height: 1.9;
+}
+
+.why-box .more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 12px 21px;
+  background: var(--kcc-brass);
+  border-radius: 3px;
+  color: var(--kcc-ink-deep);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.why-box .more-btn:hover {
+  background: var(--kcc-white);
+  color: var(--kcc-ink);
+}
+
+.why-us .icon-box {
+  height: 100%;
+  padding: 30px 19px;
+  background: var(--kcc-paper);
+  border: 1px solid #D5DEE0;
+  border-radius: 4px;
+  text-align: center;
+  transition: .3s ease;
+}
+
+.why-us .icon-box:hover {
+  background: var(--kcc-white);
+  border-color: var(--kcc-sage);
+  box-shadow: 0 14px 30px rgba(23, 45, 61, .1);
+  transform: translateY(-6px);
+}
+
+.why-us .icon-box i {
+  margin-bottom: 17px;
+  color: var(--kcc-sage);
+  font-size: 36px;
+}
+
+.why-us .icon-box h4 {
+  margin-bottom: 10px;
+  color: var(--kcc-ink);
+  font-size: 16px;
+}
+
+.why-us .icon-box p {
+  margin: 0;
+  color: var(--kcc-text);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 10. FEATURES
+---------------------------------------------------------- */
+.features {
+  padding: 85px 0;
+  background: var(--kcc-parchment);
+}
+
+.features-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 22px 18px;
+  background: var(--kcc-white);
+  border: 1px solid var(--kcc-border);
+  border-radius: 4px;
+  transition: .3s ease;
+}
+
+.features-item:hover {
+  border-color: var(--kcc-brass);
+  box-shadow: 0 12px 26px rgba(23, 45, 61, .08);
+  transform: translateY(-4px);
+}
+
+.features-item i {
+  flex-shrink: 0;
+  margin-right: 15px;
+  color: var(--kcc-red) !important;
+  font-size: 27px;
+}
+
+.features-item h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.features-item h3 a {
+  color: var(--kcc-ink);
+}
+
+.features-item h3 a:hover {
+  color: var(--kcc-red);
+}
+
+/* 11. COURSES / ACADEMIC PROGRAMS
+---------------------------------------------------------- */
+#courses,
+.courses {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #E8EEF0, #F4F5F1);
+}
+
+.courses .course-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--kcc-white);
+  border: 1px solid #D5DEE0;
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(23, 45, 61, .055);
+  transition: .35s ease;
+}
+
+.courses .course-item:hover {
+  border-color: var(--kcc-brass);
+  box-shadow: 0 17px 38px rgba(23, 45, 61, .13);
+  transform: translateY(-7px);
+}
+
+.courses .course-item > img {
+  width: 100%;
+  height: 235px;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+
+.courses .course-item:hover > img {
+  transform: scale(1.045);
+}
+
+.course-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.course-content .category {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 0;
+  padding: 6px 11px;
+  background: var(--kcc-red-soft);
+  border-left: 3px solid var(--kcc-red);
+  color: var(--kcc-red-dark);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .65px;
+}
+
+.course-content .price {
+  margin: 0;
+  color: var(--kcc-brass);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.course-content h3 {
+  margin: 16px 0 11px;
+  color: var(--kcc-ink);
+  font-size: 20px;
+}
+
+.course-content h3 a {
+  color: var(--kcc-ink);
+}
+
+.course-content h3 a:hover {
+  color: var(--kcc-red);
+}
+
+.course-content .description {
+  flex-grow: 1;
+  color: var(--kcc-text);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.course-content .trainer {
+  margin-top: 19px;
+  padding-top: 16px;
+  border-top: 1px solid var(--kcc-border);
+}
+
+.trainer-link {
+  color: var(--kcc-red);
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.trainer-link:hover {
+  color: var(--kcc-ink);
+}
+
+.courses .course-item .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 11px 19px;
+  background: var(--kcc-ink);
+  border: 1px solid var(--kcc-ink);
+  border-radius: 3px;
+  color: var(--kcc-white);
+  font-size: 12px;
+  font-weight: 700;
+  transition: .25s ease;
+}
+
+.courses .course-item .btn-primary:hover {
+  background: var(--kcc-red);
+  border-color: var(--kcc-red);
+  color: var(--kcc-white);
+  transform: translateY(-2px);
+}
+
+/* 12. FACULTY / KCC COMMUNITY
+---------------------------------------------------------- */
+#trainers,
+.trainers-index {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #F1EDE3, #E7EDE8);
+}
+
+.trainers-index .member {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--kcc-white);
+  border: 1px solid var(--kcc-border);
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(23, 45, 61, .06);
+  transition: .35s ease;
+}
+
+.trainers-index .member:hover {
+  border-color: var(--kcc-brass);
+  box-shadow: 0 16px 34px rgba(23, 45, 61, .12);
+  transform: translateY(-7px);
+}
+
+.trainers-index .member img {
+  width: 100%;
+  height: 255px;
+  object-fit: cover;
+}
+
+.trainers-index .member-content {
+  padding: 25px 22px;
+  text-align: center;
+}
+
+.trainers-index .member h4 {
+  margin-bottom: 8px;
+  color: var(--kcc-ink);
+  font-size: 19px;
+}
+
+.trainers-index .member span {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--kcc-red);
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.trainers-index .member p {
+  margin: 0;
+  color: var(--kcc-text);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 13. EVENTS
+---------------------------------------------------------- */
+#events,
+.events {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #E9EEE9, #F5F1E8);
+}
+
+.events .event-item {
+  height: 100%;
+  overflow: hidden;
+  background: var(--kcc-white);
+  border: 1px solid #D8DED7;
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(23, 45, 61, .06);
+  transition: .3s ease;
+}
+
+.events .event-item:hover {
+  border-color: var(--kcc-brass);
+  box-shadow: 0 14px 30px rgba(23, 45, 61, .11);
+  transform: translateY(-4px);
+}
+
+.events .event-item h3,
+.events .event-item h4 {
+  color: var(--kcc-ink);
+}
+
+.events .event-item p,
+.events .event-item li {
+  color: var(--kcc-text);
+}
+
+/* 14. CAMPUS LIFE
+---------------------------------------------------------- */
+#campus-life {
+  padding: 100px 0;
+  background: var(--kcc-parchment);
+}
+
+#campus-life .row > div {
+  padding: 30px;
+  background: var(--kcc-white);
+  border-left: 4px solid var(--kcc-sage);
+  border-radius: 3px;
+  transition: .3s ease;
+}
+
+#campus-life .row > div:hover {
+  box-shadow: 0 13px 30px rgba(23, 45, 61, .08);
+  transform: translateY(-4px);
+}
+
+#campus-life h3 {
+  margin-bottom: 13px;
+  color: var(--kcc-ink);
+  font-size: 22px;
+}
+
+#campus-life p {
+  color: var(--kcc-text);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+#campus-life .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--kcc-brass);
+  color: var(--kcc-red);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+#campus-life .read-more:hover {
+  gap: 13px;
+  color: var(--kcc-red-dark);
+}
+
+/* 15. INNER PAGE TITLE AND COURSE DETAILS
+---------------------------------------------------------- */
+.page-title {
+  background: linear-gradient(115deg, #E9E2D4, #F8F6F0);
+}
+
+.page-title h1,
+.page-title h2 {
+  color: var(--kcc-ink);
+}
+
+.course-details {
+  background: var(--kcc-blue-soft);
+}
+
+.course-details .content,
+.course-details .course-info {
+  background: var(--kcc-white);
+  border: 1px solid #D5DEE0;
+  border-radius: 5px;
+}
+
+.course-details h2,
+.course-details h3,
+.course-details h4 {
+  color: var(--kcc-ink);
+}
+
+.course-details p,
+.course-details li {
+  color: var(--kcc-text);
+}
+
+/* 16. FOOTER
+---------------------------------------------------------- */
+.footer,
+#footer {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(177, 138, 74, .13), transparent 28%),
+    linear-gradient(135deg, var(--kcc-ink-deep), var(--kcc-ink));
+  border-top: 4px solid var(--kcc-brass);
+  color: #DCE4E5;
+  font-size: 13px;
+}
+
+.footer .footer-top {
+  padding-top: 68px;
+  padding-bottom: 44px;
+}
+
+.footer .logo .sitename {
+  color: var(--kcc-white);
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  font-weight: 850;
+  line-height: 1.5;
+}
+
+.footer h4 {
+  margin-bottom: 20px;
+  color: var(--kcc-brass-light);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.footer p {
+  color: #DCE4E5;
+  line-height: 1.9;
+}
+
+.footer .footer-contact p {
+  margin-bottom: 8px;
+}
+
+.footer .footer-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer .footer-links ul li {
+  padding: 6px 0;
+}
+
+.footer .footer-links ul a {
+  color: #DCE4E5;
+}
+
+.footer .footer-links ul a:hover {
+  padding-left: 5px;
+  color: var(--kcc-brass-light);
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  margin-right: 9px;
+  border: 1px solid rgba(216, 196, 155, .6);
+  border-radius: 50%;
+  color: var(--kcc-white);
+  font-size: 16px;
+  transition: .25s ease;
+}
+
+.footer .social-links a:hover {
+  background: var(--kcc-brass);
+  border-color: var(--kcc-brass);
+  color: var(--kcc-ink-deep);
+}
+
+.footer .read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--kcc-brass);
+  color: var(--kcc-brass-light);
+  font-weight: 750;
+}
+
+.footer .read-more:hover {
+  color: var(--kcc-white);
+}
+
+.footer .copyright {
+  padding: 23px 0;
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.footer .copyright p {
+  margin: 0 0 5px;
+  color: var(--kcc-white);
+}
+
+.footer .copyright .sitename {
+  color: var(--kcc-brass-light);
+}
+
+.footer .credits {
+  color: #B9C6C8;
+  font-size: 11px;
+}
+
+/* 17. SCROLL TO TOP
+---------------------------------------------------------- */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 996;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--kcc-red);
+  border-radius: 3px;
+  color: var(--kcc-white);
+  font-size: 23px;
+  box-shadow: 0 6px 18px rgba(16, 33, 46, .2);
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s ease;
+}
+
+.scroll-top.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  background: var(--kcc-ink);
+  color: var(--kcc-white);
+}
+
+/* 18. PRELOADER
+---------------------------------------------------------- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--kcc-paper);
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 23px);
+  left: calc(50% - 23px);
+  width: 46px;
+  height: 46px;
+  border: 4px solid #E6E0D5;
+  border-top-color: var(--kcc-red);
+  border-bottom-color: var(--kcc-brass);
+  border-radius: 50%;
+  animation: kccLoader 1s linear infinite;
+}
+
+@keyframes kccLoader {
+  to { transform: rotate(360deg); }
+}
+
+/* 19. BREADCRUMBS
+---------------------------------------------------------- */
+.breadcrumbs,
+.page-title .breadcrumbs,
+.breadcrumbs ol {
+  display: none !important;
+}
+
+/* 20. RESPONSIVE NAVIGATION
+   Keep all navigation links inside the mobile panel.
+---------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .navmenu ul {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .navmenu > ul {
+    display: block;
+    position: fixed;
+    inset: 78px 14px 14px;
+    z-index: 9998;
+    margin: 0;
+    padding: 14px 0 24px;
+    overflow-y: auto;
+    background: var(--kcc-paper);
+    border: 1px solid var(--kcc-border);
+    border-top: 4px solid var(--kcc-red);
+    border-radius: 4px;
+    box-shadow: 0 18px 45px rgba(16, 33, 46, .2);
+  }
+
+  .mobile-nav-active .navmenu > ul > li {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-nav-active .navmenu a {
+    display: flex;
+    width: 100%;
+    padding: 12px 21px;
+    color: var(--kcc-ink);
+    white-space: normal;
+  }
+
+  .mobile-nav-active .navmenu a.active::after {
+    display: none;
+  }
+
+  .mobile-nav-active .navmenu a:hover,
+  .mobile-nav-active .navmenu a.active {
+    background: var(--kcc-parchment);
+    color: var(--kcc-red);
+  }
+
+  .mobile-nav-active .navmenu .dropdown ul {
+    display: none;
+    position: static;
+    min-width: 0;
+    padding: 0 0 0 14px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-active .navmenu .dropdown > .dropdown-active {
+    display: block !important;
+  }
+
+  .mobile-nav-active .navmenu .dropdown ul a {
+    padding: 10px 24px;
+    font-size: 12px;
+  }
+
+  .header .btn-getstarted {
+    display: none;
+  }
+}
+
+/* 21. TABLET
+---------------------------------------------------------- */
+@media (max-width: 991px) {
+  .section {
+    padding: 76px 0;
+  }
+
+  .hero {
+    min-height: 590px;
+  }
+
+  .hero h2 {
+    font-size: 44px;
+  }
+
+  .about h3 {
+    font-size: 29px;
+  }
+
+  .why-us .icon-box {
+    min-height: 215px;
+  }
+
+  .section-title p {
+    font-size: 31px;
+  }
+
+  #courses,
+  .courses,
+  #trainers,
+  .trainers-index,
+  #events,
+  .events {
+    padding-top: 78px;
+    padding-bottom: 78px;
+  }
+}
+
+/* 22. MOBILE
+---------------------------------------------------------- */
+@media (max-width: 767px) {
+  .header .logo img {
+    max-height: 44px;
+  }
+
+  .header .logo h1,
+  .header .logo .sitename {
+    font-size: 19px;
+  }
+
+  .hero {
+    min-height: 535px;
+  }
+
+  .hero h2 {
+    font-size: 35px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .about {
+    padding: 72px 0;
+  }
+
+  .about img {
+    max-height: 330px;
+  }
+
+  .stats-item span {
+    font-size: 35px;
+  }
+
+  .section-title p {
+    font-size: 27px;
+  }
+
+  .courses .course-item > img {
+    height: 220px;
+  }
+
+  .trainers-index .member img {
+    height: 230px;
+  }
+
+  #history .history-image {
+    height: 290px;
+  }
+
+  .footer .footer-top {
+    padding-top: 50px;
+  }
+}
+
+/* 23. SMALL MOBILE
+---------------------------------------------------------- */
+@media (max-width: 575px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .header {
+    padding: 9px 0;
+  }
+
+  .header .logo img {
+    max-height: 38px;
+  }
+
+  .header .logo h1,
+  .header .logo .sitename {
+    font-size: 16px;
+    letter-spacing: .2px;
+  }
+
+  .mobile-nav-active .navmenu > ul {
+    inset: 70px 10px 10px;
+  }
+
+  .hero {
+    min-height: 490px;
+  }
+
+  .hero h2 {
+    font-size: 29px;
+    letter-spacing: -.3px;
+  }
+
+  .hero p {
+    font-size: 13px;
+  }
+
+  .hero p:last-of-type {
+    font-size: 12px;
+  }
+
+  .hero .btn-get-started {
+    padding: 12px 20px;
+    font-size: 10px;
+  }
+
+  .about h3 {
+    font-size: 25px;
+  }
+
+  .section-title p {
+    font-size: 24px;
+  }
+
+  .why-box {
+    padding: 30px 23px;
+  }
+
+  .why-box h3 {
+    font-size: 25px;
+  }
+
+  #campus-life .row > div {
+    padding: 23px;
+  }
+
+  .footer .footer-top {
+    padding-top: 43px;
+  }
+}
+
+/* 24. ACCESSIBILITY / MOTION PREFERENCE
+---------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--kcc-brass);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
